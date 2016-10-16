@@ -132,6 +132,7 @@ for i = 1:numel(test)
 
   % Accumulate errors
   ok = lb > 0 ;
+  disp('test');
   confusion = confusion + accumarray([lb(ok),pred(ok)],1,[2 2]) ;
 
   % Plots
