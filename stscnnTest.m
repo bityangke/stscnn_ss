@@ -6,7 +6,7 @@ addpath matconvnet/examples ;
 % experiment and data paths
 opts.expDir = 'data/fcn32s-THUMOS14/test' ;
 opts.dataDir = 'data/THUMOS14/test/' ;
-opts.modelPath = 'data/models/stscnn_THUMOS/net-epoch-5.mat';
+opts.modelPath = 'data/fcn32s-THUMOS14/net-epoch-5.mat'; %'data/models/stscnn_THUMOS/net-epoch-50.mat';
 opts.modelFamily = 'matconvnet' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
@@ -142,12 +142,12 @@ for i = 1:numel(test)
     fprintf('%4.1f ', 100 * info.iu) ;
     fprintf('\n meanIU: %5.2f pixelAcc: %5.2f, meanAcc: %5.2f\n', ...
             100*info.miu, 100*info.pacc, 100*info.macc) ;
-
-    figure(1) ; clf;
-    imagesc(normalizeConfusion(confusion)) ;
-    axis image ; set(gca,'ydir','normal') ;
-    colormap(jet) ;
-    drawnow ;
+% 
+%     figure(1) ; clf;
+%     imagesc(normalizeConfusion(confusion)) ;
+%     axis image ; set(gca,'ydir','normal') ;
+%     colormap(jet) ;
+%     drawnow ;
 
     % Print segmentation
     figure(100) ;clf ;

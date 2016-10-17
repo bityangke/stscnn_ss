@@ -35,43 +35,38 @@ for i=1:length(img_file_list)
      height = info.Height;
      
      % generate a mask image
-     gt_mask = zeros(height, width,3);
-     for j=1:length(gt_start_frames)
-        gt_mask(:,gt_start_frames(j):gt_end_frames(j),1) = 0.5020;% which value the label should be?
-        if (gt_start_frames(j) == 0) || (gt_start_frames(j) == 1)
-            gt_mask(:,1,:) = 1;
-        else
-            gt_mask(:,gt_start_frames(j)-1,:) = 1;
-        end
-        if (gt_end_frames(j) == width) || (gt_end_frames(j)+1 == width)
-            gt_mask(:,gt_end_frames(j),:) = 1; 
-        else
-            gt_mask(:,gt_end_frames(j)+1,:) = 1;
-        end 
-     end
-    [gt_ind, gt_map] = rgb2ind(gt_mask,2);
-    
-%     gt_mask = zeros(height, width);
+%      gt_mask = zeros(height, width,3);
 %      for j=1:length(gt_start_frames)
-%         gt_mask(:,gt_start_frames(j):gt_end_frames(j)) = 1;% which value the label should be?
+%         gt_mask(:,gt_start_frames(j):gt_end_frames(j),1) = 0.5020;% which value the label should be?
 %         if (gt_start_frames(j) == 0) || (gt_start_frames(j) == 1)
-%             gt_mask(:,1) = 255;
+%             gt_mask(:,1,:) = 1;
 %         else
-%             gt_mask(:,gt_start_frames(j)-1) = 255;
+%             gt_mask(:,gt_start_frames(j)-1,:) = 1;
 %         end
 %         if (gt_end_frames(j) == width) || (gt_end_frames(j)+1 == width)
-%             gt_mask(:,gt_end_frames(j)) = 255; 
+%             gt_mask(:,gt_end_frames(j),:) = 1; 
 %         else
-%             gt_mask(:,gt_end_frames(j)+1) = 255;
+%             gt_mask(:,gt_end_frames(j)+1,:) = 1;
 %         end 
 %      end
-%      gt_map = [0 0 0; 0.5020 0 0];
 %     [gt_ind, gt_map] = rgb2ind(gt_mask,2);
-%      subplot(2,1,1);
-%      imshow(gt_mask);
-%      im=imread(fullfile(slice_image_path,filename));
-%      subplot(2,1,2);
-%      imshow(im);
+%     imwrite(gt_ind, gt_map, fullfile(segmentation_mask_path, sprintf('%07d.png',gt{gt_index}.video_name)));     
+
+     gt_mask = zeros(height, width);
+     for j=1:length(gt_start_frames)
+        gt_mask(:,gt_start_frames(j):gt_end_frames(j)) = 1;% which value the label should be?
+        if (gt_start_frames(j) == 0) || (gt_start_frames(j) == 1)
+            gt_mask(:,1) = 255;
+        else
+            gt_mask(:,gt_start_frames(j)-1) = 255;
+        end
+        if (gt_end_frames(j) == width) || (gt_end_frames(j)+1 == width)
+            gt_mask(:,gt_end_frames(j)) = 255; 
+        else
+            gt_mask(:,gt_end_frames(j)+1) = 255;
+        end 
+     end
+     [gt_ind, gt_map] = gray2ind(gt_mask,2);
 
      imwrite(gt_ind, gt_map, fullfile(segmentation_mask_path, sprintf('%07d.png',gt{gt_index}.video_name)));     
 end

@@ -13,7 +13,7 @@ opts.modelFamily = 'matconvnet' ;
 % experiment setup
 opts.imdbPath = fullfile(opts.expDir, 'imdb.mat') ;
 opts.vocEdition = '11' ;
-opts.vocAdditionalSegmentations = true ;
+opts.vocAdditionalSegmentations = false; %true ;
 opts.vocAdditionalSegmentationsMergeMode = 2 ;
 opts.gpus = [] ;
 opts = vl_argparse(opts, varargin) ;
