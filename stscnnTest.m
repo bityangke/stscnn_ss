@@ -6,7 +6,7 @@ addpath matconvnet/examples ;
 % experiment and data paths
 opts.expDir = 'data/fcn32s-THUMOS14/test' ;
 opts.dataDir = 'data/THUMOS14/test/' ;
-opts.modelPath = 'data/fcn32s-THUMOS14/net-epoch-5.mat'; %'data/models/stscnn_THUMOS/net-epoch-50.mat';
+opts.modelPath = 'data/net-epoch-6.mat'; %'data/models/stscnn_THUMOS/net-epoch-50.mat';
 opts.modelFamily = 'matconvnet' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
